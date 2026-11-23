@@ -1,9 +1,13 @@
-"""Build a subpath-safe, fast-loading GitHub Pages static site in docs/."""
+"""Build a subpath-safe, mobile/WeChat-compatible GitHub Pages static site in docs/."""
 
 import json
 from pathlib import Path
 import shutil
+import sys
 from PIL import Image
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from build_standalone import bundle_app_modules, bundle_three  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "public"
@@ -13,7 +17,6 @@ DOCS = ROOT / "docs"
 def convert_assets() -> dict[str, str]:
     """Convert public/assets PNGs into compact WebPs under docs/assets/ and return subpath map."""
     assets_src = PUBLIC / "assets"
-    assets_dst = DOCS / "assets"
     asset_map: dict[str, str] = {}
 
     for src in sorted(assets_src.rglob("*.png")):
@@ -33,17 +36,17 @@ def convert_assets() -> dict[str, str]:
     return asset_map
 
 
-def copy_static_dirs() -> None:
-    """Copy css, js, and vendor assets cleanly into docs/."""
-    for folder in ("css", "js", "vendor"):
-        src = PUBLIC / folder
-        dst = DOCS / folder
-        if src.exists():
-            shutil.copytree(src, dst)
+def write_bundles_and_styles() -> None:
+    """Copy CSS and compile classic non-module JS bundles compatible with all mobile WebViews."""
+    shutil.copytree(PUBLIC / "css", DOCS / "css")
+    js_dir = DOCS / "js"
+    js_dir.mkdir(parents=True, exist_ok=True)
+    (js_dir / "three.bundle.js").write_text(bundle_three(), encoding="utf-8")
+    (js_dir / "app.bundle.js").write_text(bundle_app_modules(), encoding="utf-8")
 
 
 def build_index_html(asset_map: dict[str, str]) -> str:
-    """Generate subpath-safe docs/index.html with hash routing & WebP asset mapping."""
+    """Generate mobile-safe docs/index.html with zero render-blocking fonts and zero importmap."""
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -54,17 +57,7 @@ def build_index_html(asset_map: dict[str, str]) -> str:
   <meta property="og:description" content="亲手挑一张 3D 立体生日贺卡，写下祝福、装进信封、盖上火漆印章，附带专属微信生日红包送给朋友。" />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/webp" href="./assets/brand/mark.webp" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./css/styles.css" />
-  <script type="importmap">
-    {{
-      "imports": {{
-        "three": "./vendor/three.module.js"
-      }}
-    }}
-  </script>
 </head>
 <body>
   <div id="site-loading" class="site-loading" aria-hidden="false">
@@ -89,8 +82,20 @@ def build_index_html(asset_map: dict[str, str]) -> str:
   <script>
     window.__STANDALONE_BUNDLE__ = true;
     window.__INLINE_ASSETS__ = {json.dumps(asset_map, ensure_ascii=False)};
+    (function () {{
+      function hideSplash() {{
+        var el = document.getElementById('site-loading');
+        if (el) {{
+          el.classList.add('hidden');
+          el.setAttribute('aria-hidden', 'true');
+        }}
+      }}
+      window.addEventListener('error', hideSplash);
+      setTimeout(hideSplash, 6000);
+    }})();
   </script>
-  <script type="module" src="./js/main.js"></script>
+  <script src="./js/three.bundle.js"></script>
+  <script src="./js/app.bundle.js"></script>
 </body>
 </html>
 """
@@ -119,7 +124,7 @@ def main() -> None:
     DOCS.mkdir(parents=True, exist_ok=True)
 
     asset_map = convert_assets()
-    copy_static_dirs()
+    write_bundles_and_styles()
     (DOCS / "index.html").write_text(build_index_html(asset_map), encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
     (DOCS / "404.html").write_text(build_404_html(), encoding="utf-8")

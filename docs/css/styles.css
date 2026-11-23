@@ -2202,4 +2202,57 @@ a {
   .outbox-item {
     flex-wrap: wrap;
   }
+
+  .home-dock {
+    max-width: calc(100vw - 16px);
+    gap: 6px;
+    padding: 6px 8px;
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+
+  .dock-thumbs {
+    gap: 4px;
+  }
+
+  .dock-thumb-btn {
+    width: 24px;
+    height: 34px;
+    border-radius: 5px;
+  }
+
+  .dock-nav-arrows {
+    display: none;
+  }
+
+  .dock-divider {
+    margin: 0 1px;
+  }
+
+  .dock-pill-toggle {
+    padding: 6px 9px;
+    font-size: 12px;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .dock-icon-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .primary-pill-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .letter-dock,
+  .closeup-stops-bar {
+    max-width: calc(100vw - 16px);
+  }
+
+  .letter-dock {
+    gap: 6px;
+    padding: 6px 8px;
+  }
 }

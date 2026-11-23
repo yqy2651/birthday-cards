@@ -8,17 +8,7 @@
   <meta property="og:description" content="亲手挑一张 3D 立体生日贺卡，写下祝福、装进信封、盖上火漆印章，附带专属微信生日红包送给朋友。" />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/webp" href="./assets/brand/mark.webp" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./css/styles.css" />
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "./vendor/three.module.js"
-      }
-    }
-  </script>
 </head>
 <body>
   <div id="site-loading" class="site-loading" aria-hidden="false">
@@ -43,7 +33,19 @@
   <script>
     window.__STANDALONE_BUNDLE__ = true;
     window.__INLINE_ASSETS__ = {"/assets/brand/mark.png": "./assets/brand/mark.webp", "/assets/cards/candlelight-wish/cover.png": "./assets/cards/candlelight-wish/cover.webp", "/assets/cards/candlelight-wish/emblem.png": "./assets/cards/candlelight-wish/emblem.webp", "/assets/cards/candlelight-wish/foil.png": "./assets/cards/candlelight-wish/foil.webp", "/assets/cards/candlelight-wish/layers/bg.png": "./assets/cards/candlelight-wish/layers/bg.webp", "/assets/cards/candlelight-wish/layers/cake.png": "./assets/cards/candlelight-wish/layers/cake.webp", "/assets/cards/candlelight-wish/layers/frame.png": "./assets/cards/candlelight-wish/layers/frame.webp", "/assets/cards/candlelight-wish/layers/prop-bells.png": "./assets/cards/candlelight-wish/layers/prop-bells.webp", "/assets/cards/candlelight-wish/layers/prop-moon.png": "./assets/cards/candlelight-wish/layers/prop-moon.webp", "/assets/cards/candlelight-wish/layers/prop-ribbon.png": "./assets/cards/candlelight-wish/layers/prop-ribbon.webp", "/assets/cards/candlelight-wish/layers/prop-star.png": "./assets/cards/candlelight-wish/layers/prop-star.webp", "/assets/cards/candlelight-wish/relief-normal.png": "./assets/cards/candlelight-wish/relief-normal.webp", "/assets/cards/candlelight-wish/thumb.png": "./assets/cards/candlelight-wish/thumb.webp", "/assets/cards/garden-tea/cover.png": "./assets/cards/garden-tea/cover.webp", "/assets/cards/garden-tea/emblem.png": "./assets/cards/garden-tea/emblem.webp", "/assets/cards/garden-tea/foil.png": "./assets/cards/garden-tea/foil.webp", "/assets/cards/garden-tea/layers/bg.png": "./assets/cards/garden-tea/layers/bg.webp", "/assets/cards/garden-tea/layers/frame.png": "./assets/cards/garden-tea/layers/frame.webp", "/assets/cards/garden-tea/layers/prop-envelope.png": "./assets/cards/garden-tea/layers/prop-envelope.webp", "/assets/cards/garden-tea/layers/prop-lantern.png": "./assets/cards/garden-tea/layers/prop-lantern.webp", "/assets/cards/garden-tea/layers/prop-ribbon.png": "./assets/cards/garden-tea/layers/prop-ribbon.webp", "/assets/cards/garden-tea/layers/prop-wreath.png": "./assets/cards/garden-tea/layers/prop-wreath.webp", "/assets/cards/garden-tea/layers/table.png": "./assets/cards/garden-tea/layers/table.webp", "/assets/cards/garden-tea/relief-normal.png": "./assets/cards/garden-tea/relief-normal.webp", "/assets/cards/garden-tea/thumb.png": "./assets/cards/garden-tea/thumb.webp", "/assets/cards/patisserie-window/cover.png": "./assets/cards/patisserie-window/cover.webp", "/assets/cards/patisserie-window/emblem.png": "./assets/cards/patisserie-window/emblem.webp", "/assets/cards/patisserie-window/foil.png": "./assets/cards/patisserie-window/foil.webp", "/assets/cards/patisserie-window/layers/awning-tex.png": "./assets/cards/patisserie-window/layers/awning-tex.webp", "/assets/cards/patisserie-window/layers/bg.png": "./assets/cards/patisserie-window/layers/bg.webp", "/assets/cards/patisserie-window/layers/cake.png": "./assets/cards/patisserie-window/layers/cake.webp", "/assets/cards/patisserie-window/layers/frame.png": "./assets/cards/patisserie-window/layers/frame.webp", "/assets/cards/patisserie-window/layers/prop-bow.png": "./assets/cards/patisserie-window/layers/prop-bow.webp", "/assets/cards/patisserie-window/layers/prop-sill.png": "./assets/cards/patisserie-window/layers/prop-sill.webp", "/assets/cards/patisserie-window/relief-normal.png": "./assets/cards/patisserie-window/relief-normal.webp", "/assets/cards/patisserie-window/thumb.png": "./assets/cards/patisserie-window/thumb.webp", "/assets/cards/sky-balloons/cover.png": "./assets/cards/sky-balloons/cover.webp", "/assets/cards/sky-balloons/emblem.png": "./assets/cards/sky-balloons/emblem.webp", "/assets/cards/sky-balloons/foil.png": "./assets/cards/sky-balloons/foil.webp", "/assets/cards/sky-balloons/layers/balloon-blue.png": "./assets/cards/sky-balloons/layers/balloon-blue.webp", "/assets/cards/sky-balloons/layers/balloon-gold.png": "./assets/cards/sky-balloons/layers/balloon-gold.webp", "/assets/cards/sky-balloons/layers/balloon-pink.png": "./assets/cards/sky-balloons/layers/balloon-pink.webp", "/assets/cards/sky-balloons/layers/bg.png": "./assets/cards/sky-balloons/layers/bg.webp", "/assets/cards/sky-balloons/layers/frame.png": "./assets/cards/sky-balloons/layers/frame.webp", "/assets/cards/sky-balloons/layers/prop-bow.png": "./assets/cards/sky-balloons/layers/prop-bow.webp", "/assets/cards/sky-balloons/layers/prop-star.png": "./assets/cards/sky-balloons/layers/prop-star.webp", "/assets/cards/sky-balloons/layers/wreath.png": "./assets/cards/sky-balloons/layers/wreath.webp", "/assets/cards/sky-balloons/relief-normal.png": "./assets/cards/sky-balloons/relief-normal.webp", "/assets/cards/sky-balloons/thumb.png": "./assets/cards/sky-balloons/thumb.webp", "/assets/stickers/balloon.png": "./assets/stickers/balloon.webp", "/assets/stickers/bow.png": "./assets/stickers/bow.webp", "/assets/stickers/cake.png": "./assets/stickers/cake.webp", "/assets/stickers/candle.png": "./assets/stickers/candle.webp", "/assets/stickers/crown.png": "./assets/stickers/crown.webp", "/assets/stickers/cupcake.png": "./assets/stickers/cupcake.webp", "/assets/stickers/envelope.png": "./assets/stickers/envelope.webp", "/assets/stickers/gift.png": "./assets/stickers/gift.webp", "/assets/stickers/moon.png": "./assets/stickers/moon.webp", "/assets/stickers/sparkles.png": "./assets/stickers/sparkles.webp", "/assets/stickers/star-gold.png": "./assets/stickers/star-gold.webp", "/assets/stickers/wreath.png": "./assets/stickers/wreath.webp", "/assets/textures/kraft-albedo.png": "./assets/textures/kraft-albedo.webp", "/assets/textures/kraft-normal.png": "./assets/textures/kraft-normal.webp", "/assets/textures/lining-crimson-stars.png": "./assets/textures/lining-crimson-stars.webp", "/assets/textures/pearl-normal.png": "./assets/textures/pearl-normal.webp", "/assets/textures/watercolor-normal.png": "./assets/textures/watercolor-normal.webp", "/assets/textures/watercolor-rough.png": "./assets/textures/watercolor-rough.webp"};
+    (function () {
+      function hideSplash() {
+        var el = document.getElementById('site-loading');
+        if (el) {
+          el.classList.add('hidden');
+          el.setAttribute('aria-hidden', 'true');
+        }
+      }
+      window.addEventListener('error', hideSplash);
+      setTimeout(hideSplash, 6000);
+    })();
   </script>
-  <script type="module" src="./js/main.js"></script>
+  <script src="./js/three.bundle.js"></script>
+  <script src="./js/app.bundle.js"></script>
 </body>
 </html>
